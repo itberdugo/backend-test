@@ -1,0 +1,53 @@
+services:
+  # Servicio de PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: user-management-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: user_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d user_management"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Servicio de la API Node.js
+  api:
+    build: .
+    container_name: user-management-api
+    environment:
+      NODE_ENV: development
+      PORT_EXPRESS: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      DB_NAME: user_management
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+
+# Volumen para persistir datos de PostgreSQL
+volumes:
+  postgres_data:
+
+# Red para que los contenedores se comuniquen
+networks:
+  app-network:
+    driver: bridge

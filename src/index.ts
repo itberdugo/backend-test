@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import "./config/database.js";
 import route  from './routes/UserRoute.js';
 
 dotenv.config();
@@ -16,3 +17,4 @@ app.get("/health",(req ,res)=>{
 app.listen(port, ()=> {
     console.log(`Server running on PORT ${port}`);
 })
+ 

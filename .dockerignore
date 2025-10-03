@@ -1,0 +1,45 @@
+# Dependencias
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Build
+dist
+build
+.next
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+
+# Documentación
+README.md
+ARQUITECTURA_*.md
+COMO_PROBAR.md
+CONFIGURACION_PROFESIONAL.md
+INSTRUCCIONES.md
+PLAN_DE_DESARROLLO.md
