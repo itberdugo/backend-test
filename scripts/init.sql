@@ -23,7 +23,7 @@ INSERT INTO document_type (id, code, name) VALUES
 -- Creation table users
 drop table if exists users;
 CREATE TABLE users(
-    id INT PRIMARY key,
+    id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     document_type_fk VARCHAR NOT NULL,

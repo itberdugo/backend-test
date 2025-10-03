@@ -1,13 +1,17 @@
+import { Router } from 'express';
 import express from 'express';
-import dotenv from 'dotenv';
 import route  from './routes/UserRoute.js';
+import routeDocuemnt  from './routes/DocumentTypeRoute.js';
 
-dotenv.config();
+
+
 const app = express();
 const port = process.env.PORT_EXPRESS;
 
 app.use(express.json());
-app.use("/auth/api/v1",route);
+
+app.use("/auth/api/v1/users",route);
+app.use("/auth/api/v1/document-type",routeDocuemnt);
 
 app.get("/health",(req ,res)=>{
         res.status(200).send("¡OK!");
