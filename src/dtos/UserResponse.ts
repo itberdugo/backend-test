@@ -3,6 +3,7 @@
  */
 
 export interface UserResponse{
+    id: number,
     name: String;
     lastName: String;
     documentCode: String;
